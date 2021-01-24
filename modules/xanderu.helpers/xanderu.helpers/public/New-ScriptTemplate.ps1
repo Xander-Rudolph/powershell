@@ -87,4 +87,5 @@
 
     $TemplateScriptText | Out-File -FilePath (Join-Path $newPath -ChildPath "$processName.ps1") -Force | Out-Null
 
+    Write-Verbose "Script created! Check the following path: $newPath"
 }

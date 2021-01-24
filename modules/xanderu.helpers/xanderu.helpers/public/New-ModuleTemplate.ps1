@@ -281,5 +281,7 @@ foreach (`$publicScriptFile in `$publicScriptFiles) { Export-ModuleMember -Funct
 
     $ScriptPath = Join-Path $newPath -ChildPath $ProcessName
     $psdText | Out-File -FilePath (Join-Path $ScriptPath -ChildPath "$ProcessName.psd1") -Force | Out-Null
-    $psmText | Out-File -FilePath (Join-Path $ScriptPath -ChildPath "$ProcessName.psm1") -Force | Out-Null
+	$psmText | Out-File -FilePath (Join-Path $ScriptPath -ChildPath "$ProcessName.psm1") -Force | Out-Null
+	
+	Write-Verbose "Module created! Check the following path: $newPath"
 }
