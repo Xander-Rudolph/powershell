@@ -19,4 +19,4 @@ steps:
     script: |
       Install-Module xanderu.helpers -force
       Import-Module xanderu.helpers
-      Publish-ToPSGallery -PSGalleryKey $(PSGalleryKey) -codePath $(Build.SourcesDirectory)
+      Publish-ToPSGallery -PSGalleryKey $(PSGalleryKey) -codePath /home/vsts/work/1/s
