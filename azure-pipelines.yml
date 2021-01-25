@@ -16,4 +16,4 @@ steps:
     script: |
       Install-Module xanderu.helpers -force
       Import-Module xanderu.helpers
-      Publish-ToPSGallery -PSGalleryKey 'oy2h3bxx7gkeagn7b4ca3i2j67b4aopefeuv5tyzj67mom'
+      Publish-ToPSGallery -PSGalleryKey 'oy2h3bxx7gkeagn7b4ca3i2j67b4aopefeuv5tyzj67mom' -codePath $(Build.SourcesDirectory)
