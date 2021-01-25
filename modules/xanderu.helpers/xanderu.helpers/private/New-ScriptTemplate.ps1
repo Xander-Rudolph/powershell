@@ -11,7 +11,7 @@
         , [Parameter(Mandatory=$true)]
           [string]$codePath)
 
-    $newPath = Join-Path $codePath "\scripts\$processName"
+    $newPath = Join-Path $codePath "/scripts/$processName"
     If (Test-path -Path $newPath)
     {
         Write-Error "Module $processName already exists" -ErrorAction Stop

@@ -11,14 +11,14 @@
 		, [Parameter(Mandatory=$true)]
 		  [string]$codePath)
 
-	$newPath = Join-Path $codePath "\modules\$processName"
+	$newPath = Join-Path $codePath "/modules/$processName"
 
     If (Test-path -Path $newPath)
     {
         Write-Error "Module $ProcessName already exists" -ErrorAction Stop
     }
 
-    $folders = @("$ProcessName\public", "$ProcessName\private", 'tests\integration', 'tests\unit')
+    $folders = @("$ProcessName/public", "$ProcessName/private", 'tests/integration', 'tests/unit')
     $folders | ForEach-Object {New-Item -Path (Join-Path $newPath -ChildPath $_) -ItemType Directory -Force} | Out-Null
 
     $psakeText = @"
@@ -30,7 +30,7 @@ Properties {
 	`$projectRoot = `$PSScriptRoot
 	"Project root: `$projectRoot"
 
-    `$moduleRoot = Split-Path (Resolve-Path "`$projectRoot\*\*.psm1")
+    `$moduleRoot = Split-Path (Resolve-Path "`$projectRoot/*/*.psm1")
 	`$moduleName = Split-Path `$moduleRoot -Leaf
 
 	`$timestamp = Get-date -uformat "%Y%m%d-%H%M%S"
@@ -52,7 +52,7 @@ Task ProjectTests -Depends Init {
 	`$separator
 	"STATUS: Testing with PowerShell `$PSVersion``n"
 
-	`$testResults = Invoke-Pester -Path "`$projectRoot\tests\*project*" -PassThru -Tag Build
+	`$testResults = Invoke-Pester -Path "`$projectRoot/tests/*project*" -PassThru -Tag Build
 
 	if (`$testResults.FailedCount -gt 0) {
 		`$testResults | Format-List
@@ -64,7 +64,7 @@ Task ProjectTests -Depends Init {
 Task UnitTests -Depends ProjectTests {
 	`$separator
 
-	`$testResults = Invoke-Pester -Path "`$projectRoot\tests\*unit*" -PassThru -Tag Build
+	`$testResults = Invoke-Pester -Path "`$projectRoot/tests/*unit*" -PassThru -Tag Build
 
 	if (`$testResults.FailedCount -gt 0) {
 		`$testResults | Format-List
@@ -76,7 +76,7 @@ Task UnitTests -Depends ProjectTests {
 Task HelpTests -Depends UnitTests {
 	`$separator
 
-	`$testResults = Invoke-Pester -Path "`$projectRoot\tests\*help*" -PassThru -Tag Build
+	`$testResults = Invoke-Pester -Path "`$projectRoot/tests/*help*" -PassThru -Tag Build
 
 	if (`$testResults.FailedCount -gt 0) {
 		`$testResults | Format-List
