@@ -8,21 +8,12 @@
 		  [AllowEmptyCollection()] 
 		  [Tags[]] $tags
         , [string]$orgName
-        , [string]$codePath)
+		, [Parameter(Mandatory=$true)]
+		  [string]$codePath)
 
-	if ($codePath)
-	{
-		$newPath = Join-Path $codePath -ChildPath "Modules\$ProcessName"
-	}
-	else 
-	{
-		$newPath = Join-Path (Get-item $PSScriptRoot).parent.parent.parent.Fullname -ChildPath $ProcessName
-	}
+	$newPath = Join-Path $codePath "\modules\$processName"
 
-
-    Write-host $newPath
-
-    If (Test-path -Path $newpath)
+    If (Test-path -Path $newPath)
     {
         Write-Error "Module $ProcessName already exists" -ErrorAction Stop
     }
@@ -282,6 +273,4 @@ foreach (`$publicScriptFile in `$publicScriptFiles) { Export-ModuleMember -Funct
     $ScriptPath = Join-Path $newPath -ChildPath $ProcessName
     $psdText | Out-File -FilePath (Join-Path $ScriptPath -ChildPath "$ProcessName.psd1") -Force | Out-Null
 	$psmText | Out-File -FilePath (Join-Path $ScriptPath -ChildPath "$ProcessName.psm1") -Force | Out-Null
-	
-	Write-Verbose "Module created! Check the following path: $newPath"
 }

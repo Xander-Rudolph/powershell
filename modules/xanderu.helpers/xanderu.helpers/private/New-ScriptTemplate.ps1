@@ -3,25 +3,16 @@
     PARAM([Parameter(Mandatory=$true)]
           [string]$processName
         , [string]$description
-        , [Parameter(Mandatory=$true,position=0)] 
+        , [Parameter(Mandatory=$true)] 
           [AllowNull()] 
           [AllowEmptyCollection()] 
           [Tags[]] $tags
         , [string]$orgName
-        , [string]$codePath)
+        , [Parameter(Mandatory=$true)]
+          [string]$codePath)
 
-    if ($codePath)
-    {
-        $newPath = Join-Path $codePath -ChildPath "scripts\$ProcessName"
-    }
-    else 
-    {
-        $newPath = Join-Path (Get-item $PSScriptRoot).parent.parent.parent.Fullname -ChildPath $ProcessName
-    }
-
-    Write-Verbose "Creating the folder $newPath..."
-
-    If (Test-path -Path $newpath)
+    $newPath = Join-Path $codePath "\scripts\$processName"
+    If (Test-path -Path $newPath)
     {
         Write-Error "Module $processName already exists" -ErrorAction Stop
     }
@@ -86,6 +77,4 @@
 "@
 
     $TemplateScriptText | Out-File -FilePath (Join-Path $newPath -ChildPath "$processName.ps1") -Force | Out-Null
-
-    Write-Verbose "Script created! Check the following path: $newPath"
 }
