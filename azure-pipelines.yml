@@ -2,12 +2,9 @@ trigger:
 - main
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'windows-latest'
 
 steps:
-- bash: echo $(Build.Repository.LocalPath)
-- bash: echo $(Build.SourcesDirectory)
-
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
