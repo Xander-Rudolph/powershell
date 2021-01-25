@@ -1,22 +1,14 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - main
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'windows-latest'
 
 steps:
-- bash: echo $(Build.Repository.LocalPath)
-- bash: echo $(Build.SourcesDirectory)
-
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
     script: |
       Install-Module xanderu.helpers -force
       Import-Module xanderu.helpers
-      Publish-ToPSGallery -PSGalleryKey 'oy2h3bxx7gkeagn7b4ca3i2j67b4aopefeuv5tyzj67mom' -codePath $Build.SourcesDirectory
+      Publish-ToPSGallery -codePath $(Build.Repository.LocalPath) -PSGalleryKey $(PSGalleryKey) 
