@@ -14,8 +14,8 @@ steps:
       # reference for keys/tokens https://docs.microsoft.com/en-us/azure/devops/artifacts/tutorials/private-powershell-library?view=azure-devops
       Publish-ToPSGallery -PSGalleryKey $(PSGalleryKey) `
                           -secureRepoName 'PowershellAZDO' `
-                          -secureRepoURI "https://pkgs.dev.azure.com/alexrudolph1987/xanderu/_packaging/PSRepo/nuget/v2" `
-                          -secureRepopublishApiKey "az https://pkgs.dev.azure.com/alexrudolph1987/_packaging/alexrudolph1987/nuget/v3/index.json" `
+                          -secureRepoURI "https://pkgs.dev.azure.com/xanderu/master/_packaging/PSRepo/nuget/v2" `
+                          -secureRepopublishApiKey "az https://pkgs.dev.azure.com/xanderu/_packaging/PSRepo/nuget/v3/index.json" `
                           -secureRepoUser $(emailAddr) `
                           -secureRepoPass  $(AZDOPat) `
                           -codePath $(Build.Repository.LocalPath)
