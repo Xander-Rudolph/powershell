@@ -12,6 +12,7 @@ steps:
       Install-Module xanderu.helpers -force
       Import-Module xanderu.helpers
       # reference for keys/tokens https://docs.microsoft.com/en-us/azure/devops/artifacts/tutorials/private-powershell-library?view=azure-devops
+      echo 'Publish-ToPSGallery -PSGalleryKey $(PSGalleryKey) -secureRepoName 'PowershellAZDO' -secureRepoURI "https://pkgs.dev.azure.com/xanderu/master/_packaging/PSRepo/nuget/v2" -secureRepopublishApiKey "az https://pkgs.dev.azure.com/xanderu/_packaging/PSRepo/nuget/v3/index.json" -secureRepoUser $(emailAddr) -secureRepoPass  $(AZDOPat) -codePath $(Build.Repository.LocalPath)''
       Publish-ToPSGallery -PSGalleryKey $(PSGalleryKey) `
                           -secureRepoName 'PowershellAZDO' `
                           -secureRepoURI "https://pkgs.dev.azure.com/xanderu/master/_packaging/PSRepo/nuget/v2" `
