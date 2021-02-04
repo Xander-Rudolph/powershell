@@ -4,7 +4,6 @@ trigger:
 pool:
   vmImage: 'windows-latest'
 
-
 steps:
 - task: PowerShell@2
   inputs:
@@ -12,12 +11,11 @@ steps:
     script: |
       Install-Module xanderu.helpers -force -allowclobber -RequiredVersion '0.1.18'
       Import-Module xanderu.helpers
-      dir $(Build.Repository.LocalPath)
       # reference for keys/tokens https://docs.microsoft.com/en-us/azure/devops/artifacts/tutorials/private-powershell-library?view=azure-devops
       Publish-ToPSGallery -PSGalleryKey $(PSGalleryKey) `
           -secureRepoName 'PowershellAZDO' `
           -secureRepopublishApiKey $(AZDOPat) `
           -secureRepopublishApiURL "https://pkgs.dev.azure.com/xanderu/master/_packaging/PSRepo/nuget/v2" `
-          -secureRepoUser $(emailAddr) 
+          -secureRepoUser $(emailAddr) `
           -secureRepoPass $(AZDOPat) `
           -codePath $(Build.Repository.LocalPath)
