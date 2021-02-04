@@ -1,6 +1,5 @@
 trigger:
 - main
-- Azdo_RegisterPrivateRepo
 
 pool:
   vmImage: 'windows-latest'
