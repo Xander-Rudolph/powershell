@@ -1,0 +1,22 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-latest'
+
+steps:
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      Install-Module xanderu.helpers -force -allowclobber -RequiredVersion '0.2.3'
+      Import-Module xanderu.helpers
+      $ENV:PSModulePath
+      # reference for keys/tokens https://docs.microsoft.com/en-us/azure/devops/artifacts/tutorials/private-powershell-library?view=azure-devops
+      Publish-ToPSGallery -PSGalleryKey $(PSGalleryKey) `
+          -secureRepoName 'PowershellAZDO' `
+          -secureRepopublishApiKey $(AZDOPat) `
+          -secureRepopublishApiURL "https://pkgs.dev.azure.com/xanderu/master/_packaging/PSRepo/nuget/v2" `
+          -secureRepoUser $(emailAddr) `
+          -secureRepoPass $(AZDOPat) `
+          -codePath $(Build.Repository.LocalPath)
