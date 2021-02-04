@@ -10,7 +10,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      Install-Module xanderu.helpers -force -allowclobber -RequiredVersion '0.1.16'
+      Install-Module xanderu.helpers -force -allowclobber -RequiredVersion '0.1.18'
       Import-Module xanderu.helpers
       dir $(Build.Repository.LocalPath)
       # reference for keys/tokens https://docs.microsoft.com/en-us/azure/devops/artifacts/tutorials/private-powershell-library?view=azure-devops
