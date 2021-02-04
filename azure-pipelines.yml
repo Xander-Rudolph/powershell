@@ -11,4 +11,10 @@ steps:
     script: |
       Install-Module xanderu.helpers -force
       Import-Module xanderu.helpers
-      Publish-ToPSGallery -codePath $(Build.Repository.LocalPath) -PSGalleryKey $(PSGalleryKey) 
+      Publish-ToPSGallery -PSGalleryKey $(PSGalleryKey) `
+                          -secureRepoName 'PowershellAZDO' `
+                          -secureRepopublishApiKey $(AZDOPat) `
+                          -secureRepopublishApiURL "https://pkgs.dev.azure.com/xanderu/master/_packaging/PSRepo/nuget/v2/" `
+                          -secureRepoUser $(emailAddr) `
+                          -secureRepoPass $(AZDOPat) `
+                          -codePath $(Build.Repository.LocalPath)
