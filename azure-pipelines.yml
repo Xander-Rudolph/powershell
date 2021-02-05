@@ -19,3 +19,10 @@ steps:
           -secureRepoUser $(emailAddr) `
           -secureRepoPass $(AZDOPat) `
           -codePath $(Build.Repository.LocalPath)
+
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      git remote add github https://github.com/Xander-Rudolph/powershell.git
+      git push github master
