@@ -25,5 +25,6 @@ steps:
     targetType: 'inline'
     script: |
       cd $(Build.Repository.LocalPath)
+      dir
       git remote add github https://github.com/Xander-Rudolph/powershell.git
       git push github master
