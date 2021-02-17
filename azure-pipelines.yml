@@ -24,6 +24,8 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
+      set-location $(Build.Repository.LocalPath)
+      dir
       git remote add github https://github.com/Xander-Rudolph/powershell.git
       git remote
       git remote get-url github
