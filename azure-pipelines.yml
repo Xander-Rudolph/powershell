@@ -25,4 +25,6 @@ steps:
     targetType: 'inline'
     script: |
       git remote add github https://github.com/Xander-Rudolph/powershell.git
+      git remote
+      git remote get-url github
       git push github master -f
