@@ -28,6 +28,5 @@ steps:
       git config --global user.email $(emailAddr)
       git config --global user.name "AzDo Pipeline"
       git remote add github https://github.com/Xander-Rudolph/powershell.git
-      git add --all :/
-      git commit -am 'message'
-      git push github master -f
+      $branchName = git branch --show-current
+      git push --set-upstream github $branchName
