@@ -25,7 +25,7 @@ steps:
     targetType: 'inline'
     script: |
       set-location $(Build.Repository.LocalPath)
-      git config --global user.email "alex.rudolph.1987@gmail.com"
+      git config --global user.email $(emailAddr)
       git config --global user.name "AzDo Pipeline"
       git remote add github https://github.com/Xander-Rudolph/powershell.git
       git add --all :/
