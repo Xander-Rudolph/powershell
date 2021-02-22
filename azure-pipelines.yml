@@ -18,7 +18,6 @@ steps:
           -secureRepopublishApiURL "https://pkgs.dev.azure.com/xanderu/master/_packaging/PSRepo/nuget/v2" `
           -secureRepoUser $(emailAddr) `
           -secureRepoPass $(AZDOPat) `
-          -AzureDevOpsPipeline `
           -codePath $(Build.Repository.LocalPath)
 
 - task: PowerShell@2
