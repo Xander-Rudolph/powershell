@@ -9,7 +9,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      Import-Module $(Build.Repository.LocalPath)\modules\xanderu.helpers\xanderu.helpers\xanderu.helpers.psm1
+      Import-Module $(Build.Repository.LocalPath)\modules\xanderu.helpers\xanderu.helpers\xanderu.helpers.psm1 -force
       # reference for keys/tokens https://docs.microsoft.com/en-us/azure/devops/artifacts/tutorials/private-powershell-library?view=azure-devops
       Publish-ToPSGallery -PSGalleryKey $(PSGalleryKey) `
           -secureRepoName 'PowershellAZDO' `
