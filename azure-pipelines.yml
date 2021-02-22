@@ -9,7 +9,8 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      Import-Module $(Build.Repository.LocalPath)\modules\xanderu.helpers\xanderu.helpers\xanderu.helpers.psm1 -force
+      Install-Module xanderu.helpers -force -allowclobber -RequiredVersion '0.3.2'
+      Import-Module xanderu.helpers
       # reference for keys/tokens https://docs.microsoft.com/en-us/azure/devops/artifacts/tutorials/private-powershell-library?view=azure-devops
       Publish-ToPSGallery -PSGalleryKey $(PSGalleryKey) `
           -secureRepoName 'PowershellAZDO' `
